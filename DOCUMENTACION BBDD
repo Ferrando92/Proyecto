@@ -5,6 +5,8 @@ Usuarios
 -user
 -password
 -fecha_registro
+-role   / 0 guest /1 registado /2 administrador
+-estado  /0 desactivado /1 activado
 
 Libros
 +id_libro
