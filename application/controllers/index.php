@@ -8,7 +8,7 @@ class index extends CI_Controller
     }
 	function home()
 	{	
-		$this->load->database();
+		$this->load->database();//Probar autoload
 		$this->language ="spanish";
 		$this->lang->load('index', $this->language);
 		$this->load->model("Musuarios");
