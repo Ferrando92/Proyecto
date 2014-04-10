@@ -13,7 +13,7 @@ class index extends CI_Controller
 		$this->lang->load('index', $this->language);
 		$this->load->model("Musuarios");
 		$user_log = $this->Musuarios->get_user_data(1);//le pasaremos la id del usuario registrado por la cookie
-		echo $this->lang->line("welcome_msg").$user_log[0]->nombre_completo."<br>";
+		$data["mensaje_bienvenida"]=$this->lang->line("welcome_msg").$user_log[0]->nombre_completo."<br>";
 		//Saca los usernames de todos los usuarios
 		$users=$this->Musuarios->get_all_usernames();
 		
@@ -25,7 +25,9 @@ class index extends CI_Controller
 
 		//Todos los datos de los usuarios
 		$allusers = $this->Musuarios->get_all_users_data();	
-		foreach($allusers as $data_users)
+		$this->load->view("home_view",$data);
+		
+		/*foreach($allusers as $data_users)
 		{
 			echo"<br>";
 			foreach($data_users as $data =>$valor)
@@ -33,7 +35,7 @@ class index extends CI_Controller
 				echo $data.":".$valor."<pre>";
 			}
 			echo"<br>";
-		}
+		}*/
 	}
 }
 ?>
