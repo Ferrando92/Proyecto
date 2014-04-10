@@ -5,6 +5,7 @@ Usuarios
 -user
 -password
 -fecha_registro
+-telefono
 -role   / 0 guest /1 registado /2 administrador
 -estado  /0 desactivado /1 activado
 
@@ -16,12 +17,14 @@ Libros
 -isbn
 -fecha_creacion
 -editorial
+-año
+-tipo /0 lectura /1 texto
 -id_asignatura
 -id_curso
 -ciudad
 -lib_telefono
 -lib_mail
--año
+
 
 Asignaturas
 +id_asignatura
