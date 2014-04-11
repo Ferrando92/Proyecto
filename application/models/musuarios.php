@@ -68,6 +68,12 @@ class Musuarios extends CI_Model {
 		$this->db->where("password",$pass);
 		return $this->db->get("usuarios");
 	}
+	function check_signup_data($mail,$username){
+		$this->db->where("username",$username);
+		$this->db->where("mail",$mail);
+		$query= $this->db->get("usuarios");
+		return $query->result();
+	}
 
 }
 ?>
