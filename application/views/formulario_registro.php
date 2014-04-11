@@ -1,13 +1,11 @@
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<form class="form-horizontal" method="post">
+<form class="form-horizontal" method="post" action="sign_up/registrar">
 <fieldset>
 
 <!-- Form Name -->
-<legend style="margin-left:40%;"><?=$this->lang->line("form_name"); ?></legend>
-
+<div class="form-group">
+<label class="col-md-7 control-label"><h2><?=$this->lang->line("form_name"); ?></h2></label>
+</div>
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="name"><?=$this->lang->line("full_name"); ?></label>  
@@ -75,7 +73,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="signin_button"></label>
   <div class="col-md-4">
-    <button id="signin_button" name="signin_button" class="btn btn-primary"><?=$this->lang->line("button_sign_up"); ?></button>
+    <button id="signup_button" name="signup_button" class="btn btn-primary"><?=$this->lang->line("button_sign_up"); ?></button>
   </div>
 </div>
 

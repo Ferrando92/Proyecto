@@ -8,6 +8,7 @@ $lang['password']				= "Contrasenya";
 $lang['password2']				= "Repita la contrasenya";
 $lang['city']					= "Població";
 $lang['phone']					= "Telefon";
+$lang['button_sign_up']			= "Registrar";
 
 //helpers del registro
 $lang['help_full_name']				= "Escriu el teu nom i cognoms";
