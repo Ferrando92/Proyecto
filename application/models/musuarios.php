@@ -29,7 +29,7 @@ class Musuarios extends CI_Model {
 		return $this->db->count_all_results();
 	}
 
-	function insert_usuario($data)
+	function insert_new_user($data)
 	{
 		$this->db->insert('usuarios',$data);
 		return mysql_insert_id();
