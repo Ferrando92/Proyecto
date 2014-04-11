@@ -2,7 +2,7 @@ Usuarios
 +id_usuario
 -nombre_completo
 -mail
--user
+-username
 -password
 -fecha_registro
 -telefono
