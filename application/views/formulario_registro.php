@@ -1,9 +1,9 @@
-
+<div id="container">
 <form class="form-horizontal" method="post" action="sign_up/registrar">
 <fieldset>
 
 <!-- Form Name -->
-<div class="form-group">
+<div class="form-group" style="margin-top:150px">
 <label class="col-md-7 control-label"><h2><?=$this->lang->line("form_name"); ?></h2></label>
 </div>
 <!-- Text input-->
@@ -79,3 +79,4 @@
 
 </fieldset>
 </form>
+</div>

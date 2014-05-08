@@ -49,7 +49,10 @@ class CI_Controller {
 		$this->load =& load_class('Loader', 'core');
 
 		$this->load->initialize();
-		
+		$this->load->database();
+		$this->language ="spanish";
+		$this->lang->load('main', $this->language);
+		$this->load->helper('url');
 		log_message('debug', "Controller Class Initialized");
 	}
 

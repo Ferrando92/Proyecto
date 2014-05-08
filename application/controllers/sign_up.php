@@ -8,9 +8,9 @@ class Sign_up extends CI_Controller
     }
 	function index()
 	{	//if : logueado cookie redirect a home, else:
-		$this->language ="valenciano";
+		//$this->language ="valenciano";
 		$this->lang->load('signup', $this->language);
-		$this->load->view("head"); //cargamos la cabezera
+		$this->load->view("head_view"); //cargamos la cabezera
 		$this->load->view("formulario_registro");
 	}
 	function registrar()
@@ -36,6 +36,7 @@ class Sign_up extends CI_Controller
 		//realizamos una llamada ajax para comprobar si las credenciales ya existe(Correo,username)
 		if($this->Musuarios->check_signup_data($mail,$username))
 		{
+			$this->load->view("head_view",$data);
 			redirect("sign_up");
 		}
 		else
