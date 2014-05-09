@@ -2,11 +2,13 @@ Usuarios
 +id_usuario
 -nombre_completo
 -mail
--user
+-username
 -password
 -fecha_registro
--role   / 0 guest /1 registado /2 administrador
--estado  /0 desactivado /1 activado
+-telefono
+-role   /0 registado /1 administrador
+-estado /0 desactivado /1 activado
+-ip_registro
 
 Libros
 +id_libro
@@ -16,12 +18,14 @@ Libros
 -isbn
 -fecha_creacion
 -editorial
+-año
+-tipo /0 lectura /1 texto
 -id_asignatura
 -id_curso
 -ciudad
 -lib_telefono
 -lib_mail
--año
+
 
 Asignaturas
 +id_asignatura

@@ -357,6 +357,8 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+$config['appId']   = '800662916662816';
+$config['secret']  = '6fe7c03ac40399293c10bf5648e301df';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
