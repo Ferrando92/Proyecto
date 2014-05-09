@@ -41,7 +41,7 @@ class Home extends CI_Controller
 			echo"<br>";
 		}*/
 	}
-	public function login(){
+	 function login(){
 
 		//$this->load->library('facebook'); // Automatically picks appId and secret from config
         // OR
@@ -52,10 +52,13 @@ class Home extends CI_Controller
         ));
 
 		$user = $this->facebook->getUser();
-        
+        $code = $this->input->get("email");
+        //$user_profile = $this->facebook->api('/me');
+        //print_r($this->facebook->getUserAccessToken());echo "------------";
         if ($user) {
             try {
                 $data['user_profile'] = $this->facebook->api('/me');
+                echo "-------------------";
             } catch (FacebookApiException $e) {
                 $user = null;
             }
