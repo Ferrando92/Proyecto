@@ -46,14 +46,16 @@ class Home extends CI_Controller
 		//$this->load->library('facebook'); // Automatically picks appId and secret from config
         // OR
         // You can pass different one like this
-        $this->load->library('facebook', array(
-         'appId' => '800662916662816',
-         'secret' => '6fe7c03ac40399293c10bf5648e301df',
+       $this->load->library('facebook', array(
+         'appId' => '293965007434532',
+         'secret' => '50b3165512692f601d18263658ac4130',
         ));
-
-		$user = $this->facebook->getUser();
-        $code = $this->input->get("email");
+       	  $accessToken = $this->facebook->getAccessToken();
+       	  print_r($accessToken);
+       	  print_r($this->facebook);
+  			//$user_profile = $this->facebook->api('/me?,access_token='.$accessToken);
         //$user_profile = $this->facebook->api('/me');
+        //print_r($user);
         //print_r($this->facebook->getUserAccessToken());echo "------------";
         if ($user) {
             try {

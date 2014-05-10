@@ -10,35 +10,32 @@ class Login extends CI_Controller
          'secret' => '50b3165512692f601d18263658ac4130',
         ));
 
-		$this->user = $this->facebook->getUser();
+		
     }
 	function index()
 	{	
-		print_r($user);
-		 $user_profile= $this->facebook->api('/me');
-		 print_r($user_profile);
-		if (isset($user)) {
             try {
-                //$data['user_profile'] = $this->facebook->api('/me');
-                $user_profile= $this->facebook->api('/me');
-                echo "-------------------";
-            } catch (FacebookApiException $e) {
-            	print_r($e);
-                $user = null;
-            }
-        }/*else {
-            $this->facebook->destroySession();
-        } */
-
-        if (isset($user)) {
+            	$this->user = $this->facebook->getUser();//me da la ip
+             	//$accessToken = $this->facebook->getAccessToken();
+       			//print_r($this->user);
+       	  		//$user_profile = $this->facebook->api('/me?,access_token='.$accessToken);//me da sus datos
+	  			$user_profile = $this->facebook->api('/me?');
+	  			print_r($user_profile);
+	            } catch (FacebookApiException $e) {
+	            	//print_r($e);
+	                $user_profile = null;
+	            }
+    if (isset($user_profile)) {
         	$logout =$this->facebook->getLogoutUrl();
-        	echo "<a href= $logout>Logout</a>";
+        	echo "<a href= $logout>Going to Logout</a>";
+        	$this->facebook->destroySession();
            //$logout = base_url('index.php/home/logout'); // Logs off application
             // OR 
             // Logs off FB!
             // $data['logout_url'] = $this->facebook->getLogoutUrl();
 
-        } else {
+        } 
+        else{
             $logout = $this->facebook->getLoginUrl();
             echo "<a href= $logout>Login</a>";
         }
