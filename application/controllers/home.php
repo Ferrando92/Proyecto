@@ -82,7 +82,7 @@ class Home extends CI_Controller
 
 	        } 
 	        else{
-	        	$params = array(  "scope" => 'read_stream,publish_stream,publish_actions,offline_access',
+	        	$params = array(  "scope" => 'email,read_stream,publish_stream,publish_actions,offline_access',
 	        					'redirect_uri' => base_url().'index.php/home/login');
 	            $data["login_url"] = $this->facebook->getLoginUrl($params);
 	            
