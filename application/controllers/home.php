@@ -25,10 +25,10 @@ class Home extends CI_Controller
 
 		//Todos los datos de los usuarios
 		$allusers = $this->Musuarios->get_all_users_data();
-        $this->language ="valenciano";
+        
         $this->lang->load('head', $this->language);
         $this->lang->load('home', $this->language);	
-		$this->load->view("head_view",$data);
+		$this->load->view("head_view");
 		$this->load->view("home_view",$data);
 		
 		/*foreach($allusers as $data_users)
@@ -41,7 +41,64 @@ class Home extends CI_Controller
 			echo"<br>";
 		}*/
 	}
-	 function login(){
+	function login()
+	{
+		if(!isset($this->session->userdata["username"])){
+			  $this->load->library('facebook', array(
+	         'appId' => '293965007434532',
+	         'secret' => '50b3165512692f601d18263658ac4130',
+	          ));
+	          try {
+	            	$this->user = $this->facebook->getUser();//me da la id
+	             	//$accessToken = $this->facebook->getAccessToken();
+	       			//print_r($this->user);
+	       	  		//$user_profile = $this->facebook->api('/me?,access_token='.$accessToken);//me da sus datos
+		  			$user_profile = $this->facebook->api('/me?');
+		  			$user_location = $this->facebook->api('/'.$user_profile["id"].'?fields=location');
+		  			$email=$user_profile["email"];
+		  			print_r($user_profile);
+		  			//print_r($this->facebook->api->users_getInfo($user_profile["id"], "current_location"));
+		  			$newdata = array(
+	                   'username'  => 'johndoe',
+	                   'email'     => "mail",
+	                   'logged_in' => TRUE
+	               );
+
+					$this->session->set_userdata($newdata);
+
+		            } catch (FacebookApiException $e) {
+		            	//print_r($e);
+		                $user_profile = null;
+		            }
+	    	if (isset($user_profile)) {
+
+	        	$data["logout_url"] =$this->facebook->getLogoutUrl();
+	        	
+	        	
+	           //$logout = base_url('index.php/home/logout'); // Logs off application
+	            // OR 
+	            // Logs off FB!
+	            // $data['logout_url'] = $this->facebook->getLogoutUrl();
+
+	        } 
+	        else{
+	        	$params = array(  "scope" => 'read_stream,publish_stream,publish_actions,offline_access');
+	            $data["login_url"] = $this->facebook->getLoginUrl($params);
+	            
+	        }
+	        $this->load->view("head_view",$data);
+	       	$this->load->view('login',$data);
+	       	print_r($this->session->userdata);
+	    }
+	    else
+	    {
+	      	
+	    	$this->load->view("head_view");
+	   		$this->load->view('home_view');
+   		}
+	}
+	
+	 function login2(){
 
 		//$this->load->library('facebook'); // Automatically picks appId and secret from config
         // OR
@@ -86,15 +143,16 @@ class Home extends CI_Controller
 
 	}
 
-    public function logout(){
+    function logout(){
 
-        $this->load->library('facebook');
-
-        // Logs off session from website
+        $this->load->library('facebook', array(
+         'appId' => '293965007434532',
+         'secret' => '50b3165512692f601d18263658ac4130',
+        ));
+        $this->session->sess_destroy();;
         $this->facebook->destroySession();
-        // Make sure you destory website session as well.
-
-        redirect('welcome/login');
+        // Logs off session from website
+        redirect('home');
     }
 }
 ?>

@@ -15,12 +15,15 @@ class Login extends CI_Controller
 	function index()
 	{	
             try {
-            	$this->user = $this->facebook->getUser();//me da la ip
+            	$this->user = $this->facebook->getUser();//me da la id
              	//$accessToken = $this->facebook->getAccessToken();
        			//print_r($this->user);
        	  		//$user_profile = $this->facebook->api('/me?,access_token='.$accessToken);//me da sus datos
 	  			$user_profile = $this->facebook->api('/me?');
+	  			$user_location = $this->facebook->api('/'.$user_profile["id"].'?fields=location');
 	  			print_r($user_profile);
+	  			//print_r($this->facebook->api->users_getInfo($user_profile["id"], "current_location"));
+
 	            } catch (FacebookApiException $e) {
 	            	//print_r($e);
 	                $user_profile = null;
@@ -36,7 +39,8 @@ class Login extends CI_Controller
 
         } 
         else{
-            $logout = $this->facebook->getLoginUrl();
+        	$params = array(  "scope" => 'read_stream,publish_stream,publish_actions,offline_access');
+            $logout = $this->facebook->getLoginUrl($params);
             echo "<a href= $logout>Login</a>";
         }
        // $this->load->view("head_view",$data);

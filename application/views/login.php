@@ -43,7 +43,7 @@
                 </div>
             <?php else: ?>
                 <h2 class="form-signin-heading">Login with Facebook</h2>
-                <a href="<?= $login_url ?>" class="btn btn-lg btn-primary btn-block" role="button">Login</a>
+                <a href="<?= $login_url?>" class="btn btn-lg btn-primary btn-block" role="button">Login</a>
             <?php endif; ?>
             <a href="https://github.com/puneetkay/Facebook-PHP-CodeIgniter" class="btn btn-lg btn-success btn-block" target="_blank" role="button">View Source on Github</a>
 
