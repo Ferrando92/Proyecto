@@ -26,7 +26,7 @@ class Home extends CI_Controller
 		//Todos los datos de los usuarios
 		$allusers = $this->Musuarios->get_all_users_data();
         
-        $this->lang->load('head', $this->language);
+       
         $this->lang->load('home', $this->language);	
 		$this->load->view("head_view");
 		$this->load->view("home_view",$data);
@@ -59,7 +59,7 @@ class Home extends CI_Controller
 		  			print_r($user_profile);
 		  			//print_r($this->facebook->api->users_getInfo($user_profile["id"], "current_location"));
 		  			$newdata = array(
-	                   'username'  => 'johndoe',
+	                   'username'  => $email,
 	                   'email'     => "mail",
 	                   'logged_in' => TRUE
 	               );
@@ -82,7 +82,8 @@ class Home extends CI_Controller
 
 	        } 
 	        else{
-	        	$params = array(  "scope" => 'read_stream,publish_stream,publish_actions,offline_access');
+	        	$params = array(  "scope" => 'read_stream,publish_stream,publish_actions,offline_access',
+	        					'redirect_uri' => base_url().'index.php/home/login');
 	            $data["login_url"] = $this->facebook->getLoginUrl($params);
 	            
 	        }
