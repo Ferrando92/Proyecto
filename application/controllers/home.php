@@ -25,10 +25,10 @@ class Home extends CI_Controller
 
 		//Todos los datos de los usuarios
 		$allusers = $this->Musuarios->get_all_users_data();
-        $this->language ="valenciano";
-        $this->lang->load('head', $this->language);
+        
+       
         $this->lang->load('home', $this->language);	
-		$this->load->view("head_view",$data);
+		$this->load->view("head_view");
 		$this->load->view("home_view",$data);
 		
 		/*foreach($allusers as $data_users)
@@ -41,55 +41,74 @@ class Home extends CI_Controller
 			echo"<br>";
 		}*/
 	}
-	public function login(){
-
-		//$this->load->library('facebook'); // Automatically picks appId and secret from config
-        // OR
-        // You can pass different one like this
-        $this->load->library('facebook', array(
-         'appId' => '800662916662816',
-         'secret' => '6fe7c03ac40399293c10bf5648e301df',
-        ));
-
-		$user = $this->facebook->getUser();
-        
-        if ($user) {
-            try {
-                $data['user_profile'] = $this->facebook->api('/me');
-            } catch (FacebookApiException $e) {
-                $user = null;
-            }
-        }else {
-            $this->facebook->destroySession();
-        }
-
-        if ($user) {
-
-            $data['logout_url'] = base_url('index.php/home/logout'); // Logs off application
-            // OR 
-            // Logs off FB!
-            // $data['logout_url'] = $this->facebook->getLogoutUrl();
-
-        } else {
-            $data['login_url'] = $this->facebook->getLoginUrl(array(
-                'redirect_uri' => base_url('index.php/home/login'), 
-                'scope' => array("email") // permissions here
-            ));
-        }
-        $this->load->view("head_view",$data);
-        $this->load->view('login',$data);
-
+	function wibuks_login()
+	{
+		echo "im here";
 	}
 
-    public function logout(){
+	function fblogin()
+	{
+		$this->load->library('facebook', array(
+		     'appId' => '293965007434532',
+		     'secret' => '50b3165512692f601d18263658ac4130',
+		     ));
+		try 
+		{
+			$this->facebook->destroySession();
+			//$this->user = $this->facebook->getUser();
+		 	//$accessToken = $this->facebook->getAccessToken();
+			//print_r($this->user);
+				//$user_profile = $this->facebook->api('/me?,access_token='.$accessToken);//me da sus datos
+			$user_profile = $this->facebook->api('/me');
+			//$user_location = $this->facebook->api('/'.$user_profile["id"].'?fields=location');
+			$email=$user_profile["email"];
+			print_r($user_profile);
 
-        $this->load->library('facebook');
+			//print_r($this->facebook->api->users_getInfo($user_profile["id"], "current_location"));
+			$newdata = array(
+		   'username'  => $email,
+		   'email'     => "mail",
+		   'logged_in' => TRUE
+				);
 
-        // Logs off session from website
+			$this->session->set_userdata($newdata);
+
+		} catch (FacebookApiException $e) {
+			//print_r($e);
+		    $user_profile = null;
+		}
+		redirect("home"); //una vez logeado somos volvemos al home
+
+	}
+	function login()
+	{
+
+		if(!isset($this->session->userdata["username"])){
+			$this->load->library('facebook', array(
+         		'appId' => '293965007434532',
+         		'secret' => '50b3165512692f601d18263658ac4130',
+        	));
+	         
+        	$params = array(  "scope" => 'email,read_stream,publish_stream,publish_actions,offline_access',
+        		'redirect_uri' => base_url().'index.php/home/fblogin');
+            $data["facebook_login"] = $this->facebook->getLoginUrl($params);
+	        $data["wibuks_login"]  = base_url().'index.php/home/wibuks_login';
+	        $this->lang->load('login', $this->language);	
+	    	$this->load->view("head_view");
+	   		$this->load->view('login',$data);
+   		}
+	}
+	
+    function logout(){
+
+        $this->load->library('facebook', array(
+         'appId' => '293965007434532',
+         'secret' => '50b3165512692f601d18263658ac4130',
+        ));
+        $this->session->sess_destroy();;
         $this->facebook->destroySession();
-        // Make sure you destory website session as well.
-
-        redirect('welcome/login');
+        // Logs off session from website
+        redirect('home');
     }
 }
 ?>

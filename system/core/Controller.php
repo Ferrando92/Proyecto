@@ -50,8 +50,9 @@ class CI_Controller {
 
 		$this->load->initialize();
 		$this->load->database();
-		$this->language ="spanish";
-		
+		$this->language = "spanish";
+		$this->load->library('session');
+		$this->lang->load('head', $this->language);
 		$this->load->helper('url');
 		log_message('debug', "Controller Class Initialized");
 	}

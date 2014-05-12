@@ -40,9 +40,14 @@
               </ul>
             </li>-->
             <li><a href="#"><?=$this->lang->line("contact"); ?></a></li>
+            <?php if(!isset($this->session->userdata["username"])){ ?>
             <li><a href="<?=base_url()?>index.php/home/login"><?=$this->lang->line("sign_in"); ?></a></li>
-            <li><a href="<?=base_url()?>index.php/sign_up"><?=$this->lang->line("sign_up"); ?></a></li>
-          </ul>
+             <li><a href="<?=base_url()?>index.php/sign_up"><?=$this->lang->line("sign_up"); ?></a></li>
+            <?php }else {?>
+            <li><a href="<?=$this->session->userdata['username']?>"><?=$this->session->userdata['username']?></a></li>
+            <li><a href="<?=base_url()?>index.php/home/logout"><?=$this->lang->line("logout"); ?></a></li>
+             <?php }?>
+           </ul>
         </nav>
       </div>
     </div><!-- End Navigation bar -->
