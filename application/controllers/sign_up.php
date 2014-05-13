@@ -44,7 +44,7 @@ class Sign_up extends CI_Controller
 			$insert=array( 
 				'nombre_completo'=>$nombre_completo,
 				'mail'=>$mail,
-				'password'=>$password,
+				'password'=>md5($password),
 				'username'=>$username,
 				'telefono'=>$telefono,
 				'poblacion'=>$poblacion,

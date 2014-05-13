@@ -62,14 +62,19 @@ class Musuarios extends CI_Model {
 		return $this->db->get("usuarios");
 	}
 
-	function login($user,$pass)
+	function login_success($mail,$pass)
 	{
-		$this->db->where("username",$user);
-		$this->db->where("password",$pass);
-		return $this->db->get("usuarios");
+		$this->db->where("mail",$mail);
+		$this->db->where("password",md5($pass));
+		return $this->db->get("usuarios")->result();
 	}
 	function check_signup_data($mail,$username){
 		$this->db->where("username",$username);
+		$this->db->where("mail",$mail);
+		$query= $this->db->get("usuarios");
+		return $query->result();
+	}
+	function check_fb_signup_data($mail){
 		$this->db->where("mail",$mail);
 		$query= $this->db->get("usuarios");
 		return $query->result();

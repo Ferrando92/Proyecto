@@ -4,11 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><?=$this->lang->line("title"); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="icon" href="<?=base_url()?>images/server/favicon.ico" type="image/ico">
     <link href="<?php echo base_url(); ?>css/bootstrap.css" rel="stylesheet"> 
     <link href="//fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>css/bootshape.css" rel="stylesheet">
-
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>js/jquery.js"></script>
     <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>js/bootshape.js"></script>
@@ -41,11 +42,11 @@
             </li>-->
             <li><a href="#"><?=$this->lang->line("contact"); ?></a></li>
             <?php if(!isset($this->session->userdata["username"])){ ?>
-            <li><a href="<?=base_url()?>index.php/home/login"><?=$this->lang->line("sign_in"); ?></a></li>
+            <li><a href="<?=base_url()?>index.php/login"><?=$this->lang->line("sign_in"); ?></a></li>
              <li><a href="<?=base_url()?>index.php/sign_up"><?=$this->lang->line("sign_up"); ?></a></li>
             <?php }else {?>
             <li><a href="<?=$this->session->userdata['username']?>"><?=$this->session->userdata['username']?></a></li>
-            <li><a href="<?=base_url()?>index.php/home/logout"><?=$this->lang->line("logout"); ?></a></li>
+            <li><a href="<?=base_url()?>index.php/login/logout"><?=$this->lang->line("logout"); ?></a></li>
              <?php }?>
            </ul>
         </nav>
