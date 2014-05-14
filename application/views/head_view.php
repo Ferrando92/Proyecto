@@ -102,7 +102,7 @@ overflow: hidden;
                             <div class="navbar-content">
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <img src="http://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/twDq00QDud4/s120-c/photo.jpg"
+                                        <img  src="http://graph.facebook.com/<?=$this->session->userdata['fb_id']?>/picture?type=normal"
                                             alt="Alternate Text" class="img-responsive" />
                                         <p class="text-center small"><a href="#" >Change Photo</a></p>
                                     </div>

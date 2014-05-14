@@ -8,16 +8,11 @@ class Tester extends CI_Controller
     }
 	function index()
 	{	
-		//$this->load->database();//Probar autoload
-		
-		
 		$this->load->model("Musuarios");
-		$user = $this->Musuarios->get_user_data($this->session->userdata["id"]);
-		print_r($user);
-		$this->Musuarios->chanche_password($user[0]->id_usuario,"pepe","test1");
-		$user2 = $this->Musuarios->get_user_data($this->session->userdata["id"]);
-		echo "<pre>";
-		print_r($user2);
+		
+		$id=$this->Musuarios->check_fb_signup_data($this->session->userdata["mail"]);
+		print_r($this->session->userdata);
+
 	}
 	
 }

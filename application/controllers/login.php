@@ -16,7 +16,7 @@ class Login extends CI_Controller
                 'secret' => '6fe7c03ac40399293c10bf5648e301df',
             ));
              
-            $params = array(  "scope" => 'email,offline_access',
+            $params = array(  "scope" => 'email, public_profile, offline_access',
                 'redirect_uri' => base_url().'index.php/login/fblogin');
             $data["facebook_login"] = $this->facebook->getLoginUrl($params);
             $data["wibuks_login"]  = base_url().'index.php/home/wibuks_login';
@@ -69,6 +69,7 @@ class Login extends CI_Controller
             //print_r($this->user);
                 //$user_profile = $this->facebook->api('/me?,access_token='.$accessToken);//me da sus datos
             $user_profile = $this->facebook->api('/me');
+             //$user_profile["picture"] = $this->facebook->api("/me/picture");
             //$user_location = $this->facebook->api('/'.$user_profile["id"].'?fields=location');
             //print_r($this->facebook->api->users_getInfo($user_profile["id"], "current_location"));
            
@@ -81,6 +82,7 @@ class Login extends CI_Controller
         {
            $newdata = array(
            'id'        => $id_user[0]->id_usuario,
+           'fb_id'     => $id_user[0]->fb_id,
            'username'  => $user_profile["name"],
            'mail'      => $user_profile["email"],
            'logged_in' => TRUE
@@ -100,7 +102,8 @@ class Login extends CI_Controller
                     'nombre_completo'=>$user_profile["name"],
                     'password'=> $password,
                     'mail'=>$user_profile["email"],
-                    'username'=>$user_profile["name"],
+                    'username'=> $user_profile["username"],
+                    'fb_id' =>$user_profile["id"],
                     'fecha_registro'=>$fecha_registro,
                     'role'=>0,
                     'estado'=>1,
@@ -111,6 +114,7 @@ class Login extends CI_Controller
            $id=$this->Musuarios->check_fb_signup_data($user_profile["email"]);
            $newdata = array(
            'id'        => $id[0]->id_usuario,
+           'fb_id'     => $id[0]->fb_id,
            'username'  => $user_profile["name"],
            'mail'      => $user_profile["email"],
            'logged_in' => TRUE

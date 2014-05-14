@@ -75,7 +75,7 @@ class Musuarios extends CI_Model {
 		return $query->result();
 	}
 	function check_fb_signup_data($mail){
-		$this->db->select("id_usuario");
+		$this->db->select("id_usuario, fb_id");
 		$this->db->where("mail",$mail);
 		$query= $this->db->get("usuarios");
 		return $query->result();
