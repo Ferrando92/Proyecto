@@ -14,8 +14,8 @@
         </div>
         <div class="col-md-10">
                 <div class="panel">
-                    <img class="pic img-circle" src="http://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/twDq00QDud4/s120-c/photo.jpg" alt="...">
-                    <div class="name"><small><?=$user->nombre_completo?></small></div>
+                    <img style="margin-left:10px; margin-top:10px;" src="http://graph.facebook.com/<?=$this->session->userdata['fb_id']?>/picture?type=large" alt="...">
+                    <div class="name"><small style="font-size:45px;"><?=$user->nombre_completo?></small></div>
                 </div>
                 
     <br><br><br>

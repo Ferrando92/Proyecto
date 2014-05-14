@@ -104,13 +104,13 @@ overflow: hidden;
                                     <div class="col-md-5">
                                         <img  src="http://graph.facebook.com/<?=$this->session->userdata['fb_id']?>/picture?type=normal"
                                             alt="Alternate Text" class="img-responsive" />
-                                        <p class="text-center small"><a href="#" >Change Photo</a></p>
+                                       
                                     </div>
                                     <div class="col-md-7">
                                         <span><?=$this->session->userdata['username']?></span>
                                         <div class="divider">
                                         </div>
-                                        <a href="<?=base_url()?>index.php/profile" class="btn btn-primary btn-sm " style="font-size: 20px;">View Profile</a>
+                                        <a href="<?=base_url()?>index.php/profile" class="btn btn-primary btn-sm " style="margin-top:-15px;margin-bottom:8px;font-size: 20px;">View Profile</a>
                                     </div>
                                 </div>
                             </div>
