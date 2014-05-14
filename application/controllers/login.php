@@ -4,7 +4,7 @@ class Login extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
+        $this->load->helper('string');
     }
 
     function index()
@@ -37,9 +37,10 @@ class Login extends CI_Controller
         {
             
             $newdata = array(
-           'username'  => $user[0]->username,
-           'mail'      => $user[0]->mail,
-           'logged_in' => TRUE
+            'id'        => $user[0]->id_usuario,
+            'username'  => $user[0]->username,
+            'mail'      => $user[0]->mail,
+            'logged_in' => TRUE
             );
 
             $this->session->set_userdata($newdata);
@@ -76,9 +77,10 @@ class Login extends CI_Controller
             $user_profile = null;
         }
         $this->load->model("Musuarios");
-        if($this->Musuarios->check_fb_signup_data($user_profile["email"]))
+        if($id_user=$this->Musuarios->check_fb_signup_data($user_profile["email"]))
         {
            $newdata = array(
+           'id'        => $id_user[0]->id_usuario,
            'username'  => $user_profile["name"],
            'mail'      => $user_profile["email"],
            'logged_in' => TRUE
@@ -93,8 +95,10 @@ class Login extends CI_Controller
             $role               =0;//obtienen el rol de registrado
             $estado             =0;//Queda desactivado hasta confirmar email
             $ip                 =$this->input->ip_address();
+            $password           =md5("test1");
             $insert=array( 
                     'nombre_completo'=>$user_profile["name"],
+                    'password'=> $password,
                     'mail'=>$user_profile["email"],
                     'username'=>$user_profile["name"],
                     'fecha_registro'=>$fecha_registro,
@@ -102,13 +106,23 @@ class Login extends CI_Controller
                     'estado'=>1,
                     'ip_registro'=>$ip
                      );
-             echo "nazing";
+             
            $this->Musuarios->insert_new_user($insert);
+           $id=$this->Musuarios->check_fb_signup_data($user_profile["email"]);
+           $newdata = array(
+           'id'        => $id[0]->id_usuario,
+           'username'  => $user_profile["name"],
+           'mail'      => $user_profile["email"],
+           'logged_in' => TRUE
+            );
+
+            $this->session->set_userdata($newdata);
         }
                 
         redirect("home"); //una vez logeado somos volvemos al home
 
     }
+    
     
     
     function logout(){

@@ -75,10 +75,17 @@ class Musuarios extends CI_Model {
 		return $query->result();
 	}
 	function check_fb_signup_data($mail){
+		$this->db->select("id_usuario");
 		$this->db->where("mail",$mail);
 		$query= $this->db->get("usuarios");
 		return $query->result();
 	}
 
+	function chanche_password($id,$old,$new)
+	{
+		$this->db->where('id_usuario', $id);
+		$this->db->where('password', md5($old));
+		$this->db->update('usuarios', array('password'=>md5($new)));
+	}
 }
 ?>
