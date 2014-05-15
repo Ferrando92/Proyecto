@@ -6,6 +6,8 @@ $lang['sign_in']				= "Inicia sesión";
 $lang['sign_up']				= "Registrate!";
 $lang['logout']					= "Salir";
 $lang['contact']				= "Contacto";
+$lang['profile']				= "Mi perfil";
+$lang['view_profile']			= "Ver Perfil";
 
 
 ?>

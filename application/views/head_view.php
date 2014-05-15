@@ -95,22 +95,26 @@ overflow: hidden;
             <!--<li><a href="<?=base_url()?>index.php/profile"><?=$this->session->userdata['username']?></a></li>
             <li><a href="<?=base_url()?>index.php/login/logout"><?=$this->lang->line("logout"); ?></a></li>-->
              <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->lang->line("profile"); ?>
                     <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <div class="navbar-content">
                                 <div class="row">
                                     <div class="col-md-5">
+                                    <?php if(isset($this->session->userdata['fb_id'])){?>
                                         <img  src="http://graph.facebook.com/<?=$this->session->userdata['fb_id']?>/picture?type=normal"
                                             alt="Alternate Text" class="img-responsive" />
-                                       
+                                       <?php }else{?>
+                                            <img style="margin-top:-8px;"  src="<?=base_url()?>images/server/user_default.png"
+                                            alt="Alternate Text" class="img-responsive" />
+                                       <?php } ?>
                                     </div>
                                     <div class="col-md-7">
                                         <span><?=$this->session->userdata['username']?></span>
                                         <div class="divider">
                                         </div>
-                                        <a href="<?=base_url()?>index.php/profile" class="btn btn-primary btn-sm " style="margin-top:-15px;margin-bottom:8px;font-size: 20px;">View Profile</a>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +122,7 @@ overflow: hidden;
                                 <div class="navbar-footer-content">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <a href="#" class="btn btn-default btn-sm" style="font-size: 20px;">Change Passowrd</a>
+                                             <a href="<?=base_url()?>index.php/profile" class="btn btn-primary btn-sm " style="font-size: 20px;"><?=$this->lang->line("view_profile"); ?></a>
                                         </div>
                                         <div class="col-md-6">
                                             <a href="<?=base_url()?>index.php/login/logout" class="btn btn-default btn-sm pull-right" style="font-size: 20px; color:#FF850B;"><?=$this->lang->line("logout"); ?></a>

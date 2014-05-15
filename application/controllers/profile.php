@@ -4,6 +4,7 @@ class Profile extends CI_Controller
 	public function __construct()
     {
         parent::__construct();
+        $this->lang->load('profile', $this->language);  
         $this->load->model("Musuarios");
     }
 	function index()
