@@ -87,6 +87,7 @@ overflow: hidden;
                 <li><a href="#">All Items</a></li>
               </ul>
             </li>-->
+            <li><a href="<?=base_url()?>index.php/article/create"><?=$this->lang->line("create_ad"); ?></a></li>
             <li><a href="<?=base_url()?>index.php/contact"><?=$this->lang->line("contact"); ?></a></li>
             <?php if(!isset($this->session->userdata["username"])){ ?>
             <li><a href="<?=base_url()?>index.php/login"><?=$this->lang->line("sign_in"); ?></a></li>

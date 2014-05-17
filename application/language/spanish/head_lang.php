@@ -2,6 +2,7 @@
 //Labels del registro
 $lang['title']					= "Wibuks - Compartiendo conocimientos!";
 $lang['home']					= "Inicio";
+$lang['create_ad']				= "Publica tu Anuncio";
 $lang['sign_in']				= "Inicia sesión";
 $lang['sign_up']				= "Registrate!";
 $lang['logout']					= "Salir";

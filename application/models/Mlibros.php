@@ -28,7 +28,7 @@ class Mlibros extends CI_Model {
 		$this->db->from('libros');
 		return $this->db->count_all_results();
 	}
-	function insert_new_user($data)
+	function insert_new_article($data)
 	{
 		$this->db->insert('libros',$data);
 		return mysql_insert_id();

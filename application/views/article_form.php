@@ -1,79 +1,80 @@
 <div id="container">
-<form class="form-horizontal" method="post" action="sign_up/registrar">
+<form class="form-horizontal" method="post" action="article/create">
 <fieldset>
 
 <!-- Form Name -->
-<div class="form-group" style="margin-top:150px">
+<div class="form-group" style="margin-top:150px;margin-left:-250px;">
 <label class="col-md-7 control-label"><h2><?=$this->lang->line("form_name"); ?></h2></label>
 </div>
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="name"><?=$this->lang->line("full_name"); ?></label>  
+  <label class="col-md-4 control-label" for="name"><?=$this->lang->line("ad_title"); ?></label>  
   <div class="col-md-4">
-  <input id="name" name="name" type="text" placeholder="Ej. Paco Lopez Martinez" class="form-control input-md" required="">
-  <span class="help-block"><?=$this->lang->line("help_full_name"); ?></span>  
+  <input id="ad_title" name="ad_title" type="text" placeholder="" class="form-control input-md" required="">
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="username"><?=$this->lang->line("username"); ?></label>  
+  <label class="col-md-4 control-label" for="description"><?=$this->lang->line("description"); ?></label>  
   <div class="col-md-4">
-  <input id="username" name="username" type="text" placeholder="Ej. pepe1952" class="form-control input-md" required="">
-  <span class="help-block"><?=$this->lang->line("help_username"); ?></span>  
+  <input id="description" name="description" type="text" placeholder="" class="form-control input-md" required="">
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="mail"><?=$this->lang->line("mail"); ?></label>  
+  <label class="col-md-4 control-label" for="ISBN"><?=$this->lang->line("isbn"); ?></label>  
   <div class="col-md-4">
-  <input id="mail" name="mail" type="text" placeholder="Ej. Pacopepe@wibuks.com" class="form-control input-md" required="">
-  <span class="help-block"><?=$this->lang->line("help_mail"); ?></span>  
+  <input id="isbn" name="isbn" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md" >
   </div>
 </div>
 
 <!-- Password input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="pass"><?=$this->lang->line("password"); ?></label>
+  <label class="col-md-4 control-label" for="pass"><?=$this->lang->line("editorial"); ?></label>
   <div class="col-md-4">
-    <input id="pass" name="pass" type="password" placeholder="********" class="form-control input-md" required="">
+    <input id="editorial" name="editorial" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md" required="">
     <span class="help-block"><?=$this->lang->line("help_password"); ?></span>
   </div>
 </div>
 
 <!-- Password input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="pass2"><?=$this->lang->line("password2"); ?></label>
+  <label class="col-md-4 control-label" for="year"><?=$this->lang->line("year"); ?></label>
   <div class="col-md-4">
-    <input id="pass2" name="pass2" type="password" placeholder="********" class="form-control input-md" required="">
+    <input id="year" name="year" type="text" placeholder="" class="form-control input-md" required="">
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="city"><?=$this->lang->line("city"); ?></label>  
+  <label class="col-md-4 control-label" for="subject"><?=$this->lang->line("subject"); ?></label>  
   <div class="col-md-4">
-  <input id="city" name="city" type="text" placeholder="Ej. Barcelona" class="form-control input-md">
-  <span class="help-block"><?=$this->lang->line("help_city"); ?></span>  
+  <input id="subject" name="subject" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md">
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="phone"><?=$this->lang->line("phone"); ?></label>  
+  <label class="col-md-4 control-label" for="location"><?=$this->lang->line("location"); ?></label>  
   <div class="col-md-4">
-  <input id="phone" name="phone" type="text" placeholder="Ej. 636389234" class="form-control input-md">
-  <span class="help-block"><?=$this->lang->line("help_notrequired"); ?></span>  
+  <input id="location" name="location" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md">
   </div>
 </div>
 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="phone"><?=$this->lang->line("phone"); ?></label>  
+  <div class="col-md-4">
+  <input id="phone" name="phone" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md">
+  </div>
+</div>
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="signin_button"></label>
   <div class="col-md-4">
-    <button id="signup_button" name="signup_button" class="btn btn-primary"><?=$this->lang->line("button_sign_up"); ?></button>
+    <button id="signup_button" name="signup_button" class="btn btn-primary"><?=$this->lang->line("public_button"); ?></button>
   </div>
 </div>
 

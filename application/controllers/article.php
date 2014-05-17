@@ -55,7 +55,7 @@ class Article extends CI_Controller
             redirect("article");
 	}
 	function create()
-	{
+	{ $this->lang->load('article', $this->language);  
         if(!isset($this->session->userdata["username"]))
             redirect("login");
         else

@@ -1,10 +1,15 @@
 <?php
 //Labels del registro
-$lang['full_name']				= "Full name";
-$lang['mail']					= "Mail";
-$lang['date']					= "Start Date";
-$lang['phone']					= "Phone";
-$lang['location']				= "Location";
-$lang['logout']					= "Logout";
+$lang['form_name']				= "Publica tu anuncio!";
+$lang['ad_title']				= "Titulo";
+$lang['description']			= "Descripcion";
+$lang['isbn']					= "ISBN";
+$lang['editorial']				= "Editorial";
+$lang['year']					= "Año";
+$lang['subject']				= "Asignatura";
+$lang['location']				= "Localizacion";
+$lang['phone']					= "Telefono de contacto";
+$lang['help_notrequired']		= "No requerido";
+$lang['public_button']			= "Publicar";
 
 ?>
