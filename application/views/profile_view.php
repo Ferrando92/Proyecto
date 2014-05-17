@@ -22,7 +22,7 @@ background-color: #eeeeee;
     }
     
 </script>
-<div class="container" style="margin-top:80px;">
+<div class="container" style="margin-top:100px;">
 	<div class="row well">
 		<div class="col-md-2">
     	    <ul class="nav nav-pills nav-stacked well">
@@ -80,6 +80,7 @@ background-color: #eeeeee;
                 <div class="col-xs-8">
                     <label for="email"><h4><?=$this->lang->line("phone"); ?></h4></label>
                     <input type="email" class="form-control" name="email" id="email" value="<?php echo $user->telefono?>" title="enter your email."disabled>
+                  <br></br>
                 </div>
             </div>
          </form>
@@ -89,45 +90,45 @@ background-color: #eeeeee;
      <div id="edit_profile" class="container" style="display:none;">
       <div class="tab-panel" id="event">
         <div class="tab-pane" id="settings">
-         <form class="form" action="##" method="post" id="registrationForm">
+         <form class="form" action="<?=base_url()?>index.php/profile/edit" method="post" id="registrationForm">
             <div class="form-group">
                 
                 <div class="col-xs-8">
-                    <label for="first_name"><h4>First name</h4></label>
-                    <input type="text" class="form-control" name="edit_full_name" id="first_name" value="<?php echo $user->nombre_completo?>"  title="enter your first name if any.">
+                    <label for="full_name"><h4><?=$this->lang->line("full_name"); ?></h4></label>
+                    <input type="text" class="form-control" name="edit_full_name" id="full_name" value="<?php echo $user->nombre_completo?>"  title="enter your first name if any.">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-8">
-                   <label for="mobile"><h4>Mobile</h4></label>
-                    <input type="text" class="form-control" name="edit_poblacion" id="mobile" value="<?php echo $user->poblacion?>" title="enter your mobile number if any.">
-                </div>
-            </div>
-            <div class="form-group">
-                
-                <div class="col-xs-8">
-                    <label for="email"><h4>Email</h4></label>
-                    <input type="email" class="form-control" name="edit_phone" id="email" value="<?php echo $user->telefono?>" title="enter your email.">
+                   <label for="location"><h4><?=$this->lang->line("location"); ?></h4></label>
+                    <input type="text" class="form-control" name="edit_poblacion" id="location" value="<?php echo $user->poblacion?>" title="enter your mobile number if any.">
                 </div>
             </div>
             <div class="form-group">
                 
                 <div class="col-xs-8">
-                    <label for="password"><h4>Password</h4></label>
+                    <label for="phone"><h4><?=$this->lang->line("phone"); ?></h4></label>
+                    <input type="text" class="form-control" name="edit_phone" id="email" value="<?php echo $user->telefono?>" title="enter your email.">
+                </div>
+            </div>
+            <div class="form-group">
+                
+                <div class="col-xs-8">
+                    <label for="old_password"><h4>Password</h4></label>
                     <input type="password" class="form-control" name="old_password" id="password" placeholder="old password" title="enter your password.">
                 </div>
             </div>
             <div class="form-group">
                 
                 <div class="col-xs-8">
-                    <label for="password"><h4>Password</h4></label>
+                    <label for="new_password"><h4>Password</h4></label>
                     <input type="password" class="form-control" name="new_password" id="password" placeholder="new password" title="enter your password.">
                 </div>
             </div>
             <div class="form-group">
                 
                 <div class="col-xs-8">
-                  <label for="password2"><h4>Verify</h4></label>
+                  <label for="new_password2"><h4>Verify</h4></label>
                     <input type="password" class="form-control" name="new_password2" id="password2" placeholder="new password" title="enter your password2.">
                 </div>
             </div>

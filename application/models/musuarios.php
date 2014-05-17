@@ -87,5 +87,11 @@ class Musuarios extends CI_Model {
 		$this->db->where('password', md5($old));
 		$this->db->update('usuarios', array('password'=>md5($new)));
 	}
+
+	function update_data($id,$insert)
+	{
+		$this->db->where('id_usuario', $id);
+		$this->db->update('usuarios', $insert);
+	}
 }
 ?>

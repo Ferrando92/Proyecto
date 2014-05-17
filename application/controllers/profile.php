@@ -6,42 +6,44 @@ class Profile extends CI_Controller
         parent::__construct();
         $this->lang->load('profile', $this->language);  
         $this->load->model("Musuarios");
+        if(!isset($this->session->userdata["username"]))
+            redirect("home");
     }
 	function index()
 	{	
-		
-        if(isset($this->session->userdata["username"]))
-        {
-        	
-        	//print_r($this->session->userdata);
-        	
-        	$user = $this->Musuarios->get_user_data($this->session->userdata["id"]);
-        	$data["user"]=$user[0];
-        	print_r($data["user"]); 
-        	$this->load->view("head_view");
-        	$this->load->view("profile_view",$data);
-		}
-		else
-			redirect("home");
+	   	$user = $this->Musuarios->get_user_data($this->session->userdata["id"]);
+    	$data["user"]=$user[0];
+    	//print_r($data["user"]); 
+    	$this->load->view("head_view");
+    	$this->load->view("profile_view",$data);
+	
+			
 	}
 	function edit()
 	{	
-		
-        if(isset($this->session->userdata["username"]))
+        $insert=array();
+        $insert["nombre_completo"]=$this->input->post("edit_full_name");
+        $insert["poblacion"]=$this->input->post("edit_poblacion");
+        $insert["telefono"]=$this->input->post("edit_phone");
+        if($this->input->post("old_password")&&$this->input->post("new_password")===$this->input->post("new_password2")&&$this->input->post("new_password2")!=null)
         {
-        	
-        	print_r($this->session->userdata);
-        	$this->load->model("Musuarios");
-        	$user = $this->Musuarios->get_user_data($this->session->userdata["id"]);
-        	$data["user"]=$user[0];
-        	echo "<pre>";
-        	print_r($data["user"]);
-        	//$this->load->view("head_view");
-		}
-		else
-			redirect("home");
+            $user = $this->Musuarios->get_user_data($this->session->userdata["id"]);
+            print_r($user[0]);
+            if($user[0]->password ===md5($this->input->post("old_password")))
+            {
+                $old=$this->input->post("old_password");
+                $new=$this->input->post("new_password");
+                $new2=$this->input->post("new_password2");
+                $insert["password"]=md5($new=$this->input->post("new_password"));
+            }
+        }
+        echo "<pre>";
+        print_r($insert);
+        $this->Musuarios->update_data($this->session->userdata["id"],$insert);
+    	//$this->load->view("head_view");
+		
 	}
-	function change_password()//metodo a espera de vista
+	function change_password($old,$new)//metodo a espera de vista
 	{
 		$old=$this->input->post("old_password");
 		$new=$this->input->post("new_password");

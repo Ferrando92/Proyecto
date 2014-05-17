@@ -1,5 +1,5 @@
 <?php
-class Mcursos extends MY_Model {
+class Mcursos extends CI_Model {
 
 	/*
 		var $title   = '';
@@ -8,6 +8,11 @@ class Mcursos extends MY_Model {
 	*/
 
 	//
+	function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
 	function Mcursos()
 	{
 		$this->table="cursos";
