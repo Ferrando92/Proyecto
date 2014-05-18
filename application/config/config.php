@@ -359,6 +359,16 @@ $config['proxy_ips'] = '';
 
 $config['appId']   = '800662916662816';
 $config['secret']  = '6fe7c03ac40399293c10bf5648e301df';
+ $config['protocol']    = 'smtp';
+$config['smtp_host']    = 'ssl://smtp.gmail.com';
+$config['smtp_port']    = '465';
+$config['smtp_timeout'] = '7';
+$config['smtp_user']    = 'wibuks.dev@gmail.com';
+$config['smtp_pass']    = md5('ad7b6cde558045ac095fe51e2d171b37');
+$config['charset']    = 'utf-8';
+$config['newline']    = "\r\n";
+$config['mailtype'] = 'text'; // or html
+$config['validation'] = TRUE; // bool whether to validate email or not   
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
