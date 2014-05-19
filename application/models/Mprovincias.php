@@ -1,5 +1,5 @@
 <?php
-class Mcursos extends CI_Model {
+class Mprovincias extends CI_Model {
 
 	/*
 		var $title   = '';
@@ -13,24 +13,23 @@ class Mcursos extends CI_Model {
         // Call the Model constructor
         parent::__construct();
     }
-	function Mcursos()
+	function Mprovincias()
 	{
-		$this->table="cursos";
-		$this->name_id="id_curso";
+		$this->table="provincias";
+		$this->name_id="id_provincia";
 		// Llamando al contructor del Modelo
 		parent::Model();
 	}
 
 	// Cuenta los usuarios que hay en la tabla
-	function count_cursos()
+	function count_provincias()
 	{
-		$this->db->from('cursos');
+		$this->db->from('provincias');
 		return $this->db->count_all_results();
 	}
-	function get_all_cursos()
+	function get_all_provincias()
 	{
-		$query = $this->db->get("cursos");
+		$query = $this->db->get("provincias");
 		return $query->result();
 	}
 }
-?>

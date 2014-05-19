@@ -16,7 +16,7 @@ class Mlibros extends CI_Model {
    
 	function Mlibros()
 	{
-		$this->table="wi_libros";
+		$this->table="libros";
 		$this->name_id="id_libro";
 		// Llamando al contructor del Modelo
 		parent::Model();

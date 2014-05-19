@@ -1,5 +1,33 @@
+
+<script>
+function check_course()
+{
+ var id = $("#course").val();
+   $.ajax({
+              url: "<?php echo base_url();?>index.php/article/get_asignaturas",
+              type: "POST",
+              data: { id_asignatura : id},
+              success: function(data) {
+                            $("#subject").html("");
+                            var asignaturas = data.split("@");
+                            
+                            $.each(asignaturas, function(){
+                                 var datos= this.split("/");
+                                 //alert(datos);
+                                  if(datos!="")
+                                  {
+                                    var option ='<option value='+datos[0]+'>'+datos[1]+'</option>';
+                                    $("#subject").append(option);
+                                  }
+                              });
+                             
+                    },
+              
+            });
+}
+</script>
 <div id="container">
-<form class="form-horizontal" method="post" action="article/create">
+<form class="form-horizontal" method="post" action="create">
 <fieldset>
 
 <!-- Form Name -->
@@ -48,21 +76,51 @@
   </div>
 </div>
 
-<!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="subject"><?=$this->lang->line("subject"); ?></label>  
+  <label class="col-md-4 control-label" for="course"><?=$this->lang->line("course"); ?></label>  
   <div class="col-md-4">
-  <input id="subject" name="subject" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md">
+  <select id="course" name="course" class="form-control" onchange="check_course()">
+  <option value="0">--Elige un curso--</option>
+  <?php 
+  foreach ($cursos as $curso) {
+      echo '<option value='."$curso->id_curso".'>'."$curso->descripcion".'</option>';
+    }
+    ?>
+  </select>
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="location"><?=$this->lang->line("location"); ?></label>  
+  <label class="col-md-4 control-label" for="subject"><?=$this->lang->line("subject"); ?></label>  
   <div class="col-md-4">
-  <input id="location" name="location" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md">
+  <select id="subject" name="subject" class="form-control">
+  
+  </select>
+
+
   </div>
 </div>
+
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="location"><?=$this->lang->line("location"); ?></label>  
+  <div class="col-md-4">
+  <select id="location" name="location" class="form-control">
+  <option value="0">--Elige una provincia--</option>
+  <?php 
+  foreach ($location as $provincia) {
+      echo '<option value='."$provincia->id_provincia".'>'."$provincia->provincia".'</option>';
+    }
+  ?>
+    
+
+</select>
+  </div>
+</div>
+
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="phone"><?=$this->lang->line("phone"); ?></label>  

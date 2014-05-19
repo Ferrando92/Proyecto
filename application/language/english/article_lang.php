@@ -7,6 +7,7 @@ $lang['isbn']					= "ISBN";
 $lang['editorial']				= "Editorial";
 $lang['year']					= "Year";
 $lang['subject']				= "Subject";
+$lang['course']					= "Course";
 $lang['location']				= "Location";
 $lang['phone']					= "Contact phone";
 $lang['help_notrequired']		= "Not required";

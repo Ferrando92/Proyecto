@@ -27,5 +27,15 @@ class Masignaturas extends CI_Model {
 		$this->db->from('asignaturas');
 		return $this->db->count_all_results();
 	}
+	function get_all_asignaturas()
+	{
+		$query = $this->db->get("asignaturas");
+		return $query->result();
+	}
+	function get_asignaturas_by_curso($id)
+	{
+		$this->db->where("id_curso",$id);
+		$query=$this->db->get("asignaturas");
+		return $query->result();
+	}
 }
-?>
