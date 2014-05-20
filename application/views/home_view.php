@@ -3,11 +3,17 @@
 
     <div id="main_content">
       <div  class="jumbotron" style=" height:900px; background-image: url(<?php echo base_url();?>images/server/main_try.gif);">
-           
-            <div class="container  col-centered " style="margin-top:250px;">
-           <label class=" col-sm-6 col-md-12" style="text-align:center; color:orange"  for="username"><h2 style="color:#FFFFFF;"><?=$this->lang->line("search_title"); ?></h2></label>  
-            <input id="username" name="username" type="text" placeholder="Search..." class=" form-control col-md-4 col-sm-4 " required="" style=" background-color: rgba(255, 255, 255, 0.8);">
-            </div>
+        <div class="container  col-centered " style="margin-top:250px;">
+         <label class=" col-sm-6 col-md-12" style="text-align:center; color:orange"  for="username"><h2 style="color:#FFFFFF;"><?=$this->lang->line("search_title"); ?></h2></label>  
+         <form method="POST" action="search">
+           <div class="input-group">
+            <input name="search" type="text" class="form-control" placeholder="Search..." required="" style=" background-color: rgba(255, 255, 255, 0.8);">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit" style=" background-color: rgba(255, 255, 255, 0.9);">Go!</button>
+            </span>
+          </div>
+        </form><!-- /input-group -->
+       </div>
       </div>
     </div><!-- End Slide gallery -->
     <h3 class="text-center">Wild Nature Charity & Urgent Program</h3>

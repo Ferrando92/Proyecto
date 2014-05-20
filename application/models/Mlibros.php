@@ -47,5 +47,21 @@ class Mlibros extends CI_Model {
 		$query=$this->db->get("libros");
 		return $query->result();
 	}
+	function count_search($search)
+	{
+		$this->db->like('titulo',$search);
+		$query = $this->db->get('libros');
+        return $query->num_rows();
+
+	}
+	function total_posts_paginados($buscador, $por_pagina, $segmento) {
+        $this->db->like('titulo', $buscador);
+        $consulta = $this->db->get('libros', $por_pagina, $segmento);
+        if ($consulta->num_rows() > 0) {
+            foreach ($consulta->result() as $fila) {
+            $data[] = $fila;
+        }
+            return $data;
+        }
+	}
 }
-?>
