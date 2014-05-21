@@ -25,9 +25,9 @@
     <?php
     if(!$searches)
     {
-    ?>
-    No hay nada que mostrar
-    <?php
+    
+   $this->load->view("oops_view");
+   
     }else{
     foreach($searches as $fila)
     {

@@ -8,11 +8,21 @@
     <div id="main_content">
       <div  class="jumbotron" style=" height:900px; background-image: url(<?php echo base_url();?>images/server/main_try.gif);">
         <div class="container  col-centered " style="margin-top:250px;">
-         <label class=" col-sm-6 col-md-12" style=" text-align:center; color:orange"  for="username"><h2 style="color:#FFFFFF;"><?=$this->lang->line("search_title"); ?></h2></label>  
-         <div id="action-buttons" style="text-align:center; padding:20px;" class="span7 text-center">
-           <a href="#" class=" btn btn-primary btn-lg " style="font-size:25px; width:200px;">Busca! <i class="icon-search"></i></a>
-           <a href="<?=base_url()?>index.php/article/create" class=" btn btn-warning btn-lg" style="font-size:25px; width:200px;"><i class="icon-pencil"></i> Anunciate!</a>
-         </div>
+         <label class=" col-sm-6 col-md-12" style="text-align:center; color:orange"  for="username"><h2 style="color:#FFFFFF;"><?=$this->lang->line("search_title"); ?></h2></label>  
+         <form method="POST" action="search">
+           <div class="input-group">
+            <input name="search" type="text" class="form-control" placeholder="Search..." required="" style=" background-color: rgba(255, 255, 255, 0.8);">
+               <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"  style=" background-color: rgba(255, 255, 255, 0.8);">Search <span class="caret"></span></button>
+                <ul style="background-color: rgba(255, 255, 255, 0.8);"class="dropdown-menu">
+                  <li class="search-drop" style="font-family:helvetica;"><a href="#">Busqueda por titulo</a></li>
+                  <li class="search-drop" style="font-family:helvetica;"><a href="#">Busqueda por ISBN</a></li>
+                  <li class="search-drop" style="font-family:helvetica;"><a href="#">Busqueda avanzada</a></li>
+                  <li class="search-drop" style="font-family:helvetica;"><a href="#">Busqueda simple</a></li>
+                </ul>
+              </div><!-- /btn-group -->
+            </div>
+         </form><!-- /input-group -->
        </div>
       </div>
     </div><!-- End Slide gallery -->
