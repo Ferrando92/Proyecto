@@ -19,6 +19,7 @@ define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0777);
 define('SMTP_PASS', "wibuks1234");
 
+
 /*
 |--------------------------------------------------------------------------
 | File Stream Modes

@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <title><?=$this->lang->line("title"); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<?=base_url()?>images/server/favicon.ico" type="image/ico">
@@ -88,6 +89,7 @@ overflow: hidden;
               </ul>
             </li>-->
             <li><a href="<?=base_url()?>index.php/article/create"><?=$this->lang->line("create_ad"); ?></a></li>
+            <li><a href="<?=base_url()?>index.php/search"><?=$this->lang->line("search"); ?></a></li>
             <li><a href="<?=base_url()?>index.php/contact"><?=$this->lang->line("contact"); ?></a></li>
             <?php if(!isset($this->session->userdata["username"])){ ?>
             <li><a href="<?=base_url()?>index.php/login"><?=$this->lang->line("sign_in"); ?></a></li>

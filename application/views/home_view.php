@@ -10,7 +10,7 @@
         <div class="container  col-centered " style="margin-top:250px;">
          <label class=" col-sm-6 col-md-12" style=" text-align:center; color:orange"  for="username"><h2 style="color:#FFFFFF;"><?=$this->lang->line("search_title"); ?></h2></label>  
          <div id="action-buttons" style="text-align:center; padding:20px;" class="span7 text-center">
-           <a href="#" class=" btn btn-primary btn-lg " style="font-size:25px; width:200px;">Busca! <i class="icon-search"></i></a>
+           <a href="<?=base_url()?>index.php/search" class=" btn btn-primary btn-lg " style="font-size:25px; width:200px;">Busca! <i class="icon-search"></i></a>
            <a href="<?=base_url()?>index.php/article/create" class=" btn btn-warning btn-lg" style="font-size:25px; width:200px;"><i class="icon-pencil"></i> Anunciate!</a>
          </div>
        </div>

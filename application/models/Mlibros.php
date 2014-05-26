@@ -49,13 +49,39 @@ class Mlibros extends CI_Model {
 	}
 	function count_search($search)
 	{
-		$this->db->like('titulo',$search);
+		foreach ($search as $field => $value) {
+			$this->db->like($field,$value);
+		}
+		
 		$query = $this->db->get('libros');
         return $query->num_rows();
 
 	}
 	function total_posts_paginados($buscador, $por_pagina, $segmento) {
-        $this->db->like('titulo', $buscador);
+		
+		if(isset($buscador["titulo"]))
+		{
+		    $this->db->like('titulo', $buscador["titulo"]);
+		}
+
+    	if(isset($buscador["descripcion"]))
+    	{
+        	$this->db->like('descripcion', $buscador["descripcion"]);
+    	}
+    	if(isset($buscador["ISBN"]))
+    	{
+        	$this->db->where('ISBN', $buscador["ISBN"]);
+        }
+    	if(isset($buscador["localidad"]))
+    	{
+        	$this->db->where('localidad', $buscador["localidad"]); 
+    	}
+    	if(isset($buscador["id_asignatura"]))
+        $this->db->where('id_asignatura', $buscador['id_asignatura']); 
+
+    	if(isset($buscador["id_curso"]))
+        $this->db->where('id_curso', $buscador["id_curso"]); 
+
         $consulta = $this->db->get('libros', $por_pagina, $segmento);
         if ($consulta->num_rows() > 0) {
             foreach ($consulta->result() as $fila) {

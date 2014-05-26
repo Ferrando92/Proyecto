@@ -5,21 +5,45 @@ class Search extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('Mlibros');
+         $this->lang->load('search', $this->language);  
     }
 
-
-    public function index() {
+    function index()
+    {
+        $this->load->helper('form');
+        $this->load->model("Mprovincias");
+        $this->load->model("Mcursos");
+        $provincias=$this->Mprovincias->get_all_provincias();
+        $cursos=$this->Mcursos->get_all_cursos();
+        $data["location"]=$provincias;
+        $data["cursos"]=$cursos;
+        $this->load->view("head_view");
+        $this->load->view("search_form",$data);
+    }
+    
+    public function listed() {
         //$buscador="ca";
-        if(!$this->session->userdata('buscando'))
+        if($this->input->post())
         {
-            $buscador = $this->input->post('search');
+            $this->session->unset_userdata('buscando');
+            if($this->input->post('ad_title'))
+                $buscador["titulo"] = $this->input->post('ad_title');
+            if($this->input->post('description'))
+                $buscador["descripcion"] = $this->input->post('description');
+            if($this->input->post('isbn'))
+                $buscador["isbn"] = $this->input->post('isbn');
+            if($this->input->post('location')!=0)
+                $buscador["localidad"] = $this->input->post('location');
+            if($this->input->post('subject')!=0)
+                $buscador["id_asignatura"] = $this->input->post('subject');
+            if($this->input->post('course')!=0)
+                $buscador["id_curso"] = $this->input->post('course');
             $this->session->set_userdata('buscando', $buscador);
         }
-        else
-         $buscador = $this->session->userdata('buscando');
+        $buscador = $this->session->userdata('buscando');
         $pages = 8; //Número de registros mostrados por páginas
         $this->load->library('pagination'); //Cargamos la librería de paginación
-        $config['base_url'] = base_url() . "index.php/search/index"; // parametro base de la aplicación, si tenemos un .htaccess nos evitamos el index.php
+        $config['base_url'] = base_url() . "index.php/search/listed"; // parametro base de la aplicación, si tenemos un .htaccess nos evitamos el index.php
         $config['total_rows'] = $this->Mlibros->count_search($buscador); //calcula el número de filas
         $config['per_page'] = $pages; //Número de registros mostrados por páginas
         $config['num_links'] = 20; //Número de links mostrados en la paginación
