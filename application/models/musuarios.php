@@ -93,5 +93,12 @@ class Musuarios extends CI_Model {
 		$this->db->where('id_usuario', $id);
 		$this->db->update('usuarios', $insert);
 	}
+	function get_mail_by_id($id)
+	{
+		$this->db->select('mail');
+		$this->db->where('id_usuario', $id);
+		$query=$this->db->get('usuarios');
+		return $query->result();
+	}
 }
 ?>

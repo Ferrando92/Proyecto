@@ -6,13 +6,16 @@ class Profile extends CI_Controller
         parent::__construct();
         $this->lang->load('profile', $this->language);  
         $this->load->model("Musuarios");
+        $this->load->model("Mlibros");
         if(!isset($this->session->userdata["username"]))
             redirect("home");
     }
 	function index()
 	{	
 	   	$user = $this->Musuarios->get_user_data($this->session->userdata["id"]);
+        $articulos = $this->Mlibros->get_article_by_user($this->session->userdata["id"]);
     	$data["user"]=$user[0];
+        $data["articulos"]=$articulos;
     	//print_r($data["user"]); 
     	$this->load->view("head_view");
     	$this->load->view("profile_view",$data);

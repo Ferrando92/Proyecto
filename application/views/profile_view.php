@@ -144,33 +144,20 @@ background-color: #eeeeee;
     </div>
     <div id="articulos" class="container" style="display:none;">
       <div class="tab-panel" id="event">
+      <?php 
+      if($articulos)
+      foreach ($articulos as $articulo ) {?>
+      
         <div class="media">
             <a class="pull-left" href="#">
                 <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
             </a>
             <div class="media-body">
-                <h4 class="media-heading">Animation Workshop</h4>
-                2Days animation workshop to be conducted
+                <a href="<?=base_url().'index.php/article/view/'.$articulo->id_libro?>"><h4 class="media-heading"><?=$articulo->titulo?></h4></a>
+                <?=$articulo->isbn?>
             </div>
         </div>
-        <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">Animation Workshop</h4>
-              2Days animation workshop to be conducted
-            </div>
-        </div>
-         <div class="media">
-              <a class="pull-left" href="#">
-                <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading">Animation Workshop</h4>
-                2Days animation workshop to be conducted
-              </div>
-        </div>
+        <?php } else echo "Aun no tienes articulos"; ?>
     </div>   
     <br><br><br>
     <div id="contenido" style="display:none;">
@@ -215,33 +202,17 @@ background-color: #eeeeee;
      </div>
      
      <div class="tab-pane" id="event">
-       <div class="media">
-                  <a class="pull-left" href="#">
-                    <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
-                  </a>
-                  <div class="media-body">
-                    <h4 class="media-heading">Animation Workshop</h4>
-                    2Days animation workshop to be conducted
-                  </div>
+      
+      <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">Animation Workshop</h4>
+              2Days animation workshop to be conducted
             </div>
-             <div class="media">
-                  <a class="pull-left" href="#">
-                    <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
-                  </a>
-                  <div class="media-body">
-                    <h4 class="media-heading">Animation Workshop</h4>
-                    2Days animation workshop to be conducted
-                  </div>
-            </div>
-             <div class="media">
-                  <a class="pull-left" href="#">
-                    <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
-                  </a>
-                  <div class="media-body">
-                    <h4 class="media-heading">Animation Workshop</h4>
-                    2Days animation workshop to be conducted
-                  </div>
-            </div>
+      </div>
+           
     </div>
     
     

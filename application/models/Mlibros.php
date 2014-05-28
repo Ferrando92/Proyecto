@@ -47,6 +47,13 @@ class Mlibros extends CI_Model {
 		$query=$this->db->get("libros");
 		return $query->result();
 	}
+	function get_user_by_article($id)
+	{
+		$this->db->select("id_usuario");
+		$this->db->where("id_libro",$id);
+		$query=$this->db->get("libros");
+		return $query->result();
+	}
 	function count_search($search)
 	{
 		foreach ($search as $field => $value) {

@@ -111,5 +111,17 @@ class Article extends CI_Controller
             }
         }
     }
+     function get_mail()
+    {
+        if($id=$this->input->post("id_article"))
+        {
+            $this->load->model("Mlibros");
+            $this->load->model("Musuarios");
+            $id_user=$this->Mlibros->get_user_by_article($id);
+            
+            $mail=$this->Musuarios->get_mail_by_id($id_user[0]->id_usuario);
+            echo $mail[0]->mail;
+        }
+    }
 }
 ?>

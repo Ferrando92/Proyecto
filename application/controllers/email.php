@@ -9,6 +9,11 @@ class Email extends CI_Controller
     }
 	function send_contact()
 	{
+        $from=$this->input->post("from");
+        $name=$this->input->post("name");
+        $to=$this->input->post("to");
+        $message=$this->input->post("message");
+        $subject=$this->input->post("subject");
         $config['protocol']    = 'smtp';
         $config['smtp_host']    = 'ssl://smtp.gmail.com';
         $config['smtp_port']    = '465';
@@ -21,13 +26,15 @@ class Email extends CI_Controller
         $config['validation'] = TRUE; // bool whether to validate email or not 
         $this->email->initialize($config);
 
-        $this->email->from('yolo@gmail.com', 'YOLO');
-        $this->email->to('sferrando.92@gmail.com'); 
-        $this->email->subject('Email Test');
-        $this->email->message('FUNSIONA NO MAS class.');  
+        $this->email->from($from, $name);
+        $this->email->to($to); 
+        $this->email->subject($subject);
+        $this->email->message($message);  
         $this->email->send();
 
-        echo $this->email->print_debugger();
+        //$this->load->model("Mmensajes");
+        //$this->Mmensajes->save_message($insert);
+        //echo $this->email->print_debugger();
 
         
 		
