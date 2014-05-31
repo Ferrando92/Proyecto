@@ -20,6 +20,29 @@ background-color: #eeeeee;
         $('#'+div).show();
         $( "#"+tab ).attr( "class","active");
     }
+    function delete_article(id_libro)
+    {
+      if (confirm('Estas seguro de que quieres borrar este articulo?'))
+      {
+        var id_user= "<?=$this->session->userdata['id']?>";
+        $.ajax({
+                url: "<?php echo base_url();?>index.php/article/delete/"+id_libro,
+                type: "POST",
+                data: { id_user : id_user},
+                success: function(data) {
+                     if(data=="Borrado")
+                     {
+                      $("#articulo-"+id_libro).css('display', 'none');
+                     }
+
+                },
+              });
+      }
+    }
+    function edit_article(id_libro)
+    {
+
+    }
     
 </script>
 <div class="container" style="margin-top:100px;">
@@ -29,7 +52,7 @@ background-color: #eeeeee;
               <li id="profile_tab" onclick="change_display('profile_tab','profile')" class="active"><a href="#"><i class="fa fa-envelope"></i> Perfil</a></li>
               <li id="edit_tab" onclick="change_display('edit_tab','edit_profile')"><a href="#"><i class="fa fa-home"></i> Editar</a></li>
               <li id="articles_tab" onclick="change_display('articles_tab','articulos')"><a href="#"><i class="fa fa-user"></i> Articulos</a></li>
-              <li id="messages_tab" onclick="change_display('messages_tab','profile')"><a href="#"><i class="fa fa-key"></i> Mensajes</a></li>
+              <li id="messages_tab" onclick="change_display('messages_tab','messages')"><a href="#"><i class="fa fa-key"></i> Mensajes</a></li>
               <li id="logout_tab" onclick="change_display('logout_tab','profile')"><a href="<?=base_url()?>index.php/login/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
           </ul>
     </div>
@@ -142,23 +165,30 @@ background-color: #eeeeee;
         </div>
       </div>  
     </div>
+    <div id="messages" class="container" style="display:none;">
+    Proximamente...
+    </div>
     <div id="articulos" class="container" style="display:none;">
       <div class="tab-panel" id="event">
       <?php 
       if($articulos)
       foreach ($articulos as $articulo ) {?>
       
-        <div class="media">
+        <div class="media"id="articulo-<?=$articulo->id_libro?>">
             <a class="pull-left" href="#">
                 <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
             </a>
             <div class="media-body">
                 <a href="<?=base_url().'index.php/article/view/'.$articulo->id_libro?>"><h4 class="media-heading"><?=$articulo->titulo?></h4></a>
                 <?=$articulo->isbn?>
+                <br>
+                <a onclick="delete_article(<?=$articulo->id_libro?>)" class="btn btn-danger btn-xs"><i class="icon-white icon-remove"></i> Delete</a>
+                <a href="article/edit/<?=$articulo->id_libro?>" class="btn btn-warning btn-xs"><i class="icon-white icon-remove"></i> Editar</a>
             </div>
         </div>
         <?php } else echo "Aun no tienes articulos"; ?>
     </div>   
+    
     <br><br><br>
     <div id="contenido" style="display:none;">
     <ul class="nav nav-tabs" id="myTab">

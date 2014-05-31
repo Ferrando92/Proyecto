@@ -70,28 +70,10 @@ Based on tutorial from: http://www.coders-guide.com/watch.php?v=53
         <div class="col-lg-6">
           <h2>Precio</h2>
           <p>
-          <?=$articulo->precio;?>
+          <?=$articulo->precio;?> EUROS
           </p>
         </div>
-        <div class="col-lg-6">
-          <h2>Localidad</h2>
-          <p>
-          <?=$articulo->localidad;?>
-          </p>
-        </div>
-         <div class="col-lg-6">
-          <h2>Asignatura: </h2>
-          <p>
-          <?=$articulo->fecha_creacion;?>
-          </p>
-        </div>
-         <div class="col-lg-6">
-          <h2>Curso: </h2>
-          <p>
-          <?=$articulo->fecha_creacion;?>
-          </p>
-        </div>
-        <div class="col-lg-6">
+      <div class="col-lg-6">
           <h2>Fecha del anuncio: </h2>
           <p>
           <?=$articulo->fecha_creacion;?>

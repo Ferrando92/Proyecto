@@ -62,7 +62,7 @@ function check_course()
 <div class="form-group">
   <label class="col-md-4 control-label" for="ISBN"><?=$this->lang->line("isbn"); ?></label>  
   <div class="col-md-4">
-  <input id="isbn" name="isbn" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md" >
+  <input id="isbn" name="isbn" type="text" class="form-control input-md" >
   </div>
 </div>
 

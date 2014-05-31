@@ -54,7 +54,7 @@ function check_course()
 <div class="form-group">
   <label class="col-md-4 control-label" for="ISBN"><?=$this->lang->line("isbn"); ?></label>  
   <div class="col-md-4">
-  <input id="isbn" name="isbn" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md" >
+  <input id="isbn" name="isbn" type="text"  class="form-control input-md" required="">
   </div>
 </div>
 
@@ -62,7 +62,7 @@ function check_course()
 <div class="form-group">
   <label class="col-md-4 control-label" for="pass"><?=$this->lang->line("editorial"); ?></label>
   <div class="col-md-4">
-    <input id="editorial" name="editorial" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md" required="">
+    <input id="editorial" name="editorial" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md" >
     <span class="help-block"><?=$this->lang->line("help_password"); ?></span>
   </div>
 </div>
@@ -71,7 +71,7 @@ function check_course()
 <div class="form-group">
   <label class="col-md-4 control-label" for="year"><?=$this->lang->line("year"); ?></label>
   <div class="col-md-4">
-    <input id="year" name="year" type="text" placeholder="" class="form-control input-md" required="">
+    <input id="year" name="year" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md" >
     
   </div>
 </div>
@@ -126,6 +126,13 @@ function check_course()
   <label class="col-md-4 control-label" for="phone"><?=$this->lang->line("phone"); ?></label>  
   <div class="col-md-4">
   <input id="phone" name="phone" type="text" placeholder="<?=$this->lang->line('help_notrequired'); ?>" class="form-control input-md">
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="precio">Precio</label>
+  <div class="col-md-4">
+    <input id="precio" name="precio" type="text" placeholder="" class="form-control input-md" required="" >
+    
   </div>
 </div>
 <!-- Button -->

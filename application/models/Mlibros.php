@@ -64,6 +64,29 @@ class Mlibros extends CI_Model {
         return $query->num_rows();
 
 	}
+	function same_autor($article, $user)
+	{
+		$this->db->where("id_usuario",$user);
+		$this->db->where("id_libro",$article);
+		$query=$this->db->get("libros");
+		if($query)
+			return true;
+		else
+			return false;
+	}
+	function update_article($id_libro,$insert)
+	{
+		$this->db->where('id_libro', $id_libro);
+		$this->db->update('libros', $insert);
+	}
+	function delete_article($libro)
+	{		
+		$this->db->where("id_libro",$libro);
+		if($this->db->delete("libros"))
+			return true;
+		else
+			return false;
+	}
 	function total_posts_paginados($buscador, $por_pagina, $segmento) {
 		
 		if(isset($buscador["titulo"]))
