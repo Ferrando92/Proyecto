@@ -10,8 +10,17 @@ class Sign_up extends CI_Controller
 	{	//if : logueado cookie redirect a home, else:
 		//$this->language ="valenciano";
 		$this->lang->load('signup', $this->language);
+		$this->lang->load('login', $this->language); 
+		 $this->load->library('facebook', array(
+                'appId' => '293965007434532',
+                'secret' => '6fe7c03ac40399293c10bf5648e301df',
+            ));
+             
+            $params = array(  "scope" => 'email, public_profile, offline_access',
+                'redirect_uri' => base_url().'index.php/login/fblogin');
+            $data["facebook_login"] = $this->facebook->getLoginUrl($params);
 		$this->load->view("head_view"); //cargamos la cabezera
-		$this->load->view("formulario_registro");
+		$this->load->view("formulario_registro",$data);
 	}
 	function registrar()
 	{

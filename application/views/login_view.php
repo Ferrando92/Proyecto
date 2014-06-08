@@ -50,10 +50,12 @@
                         {
                             var mensaje="<h1> WOW, SUCH AMAISING</h1>";
                              $("#alert_div").html(mensaje);
+                             $(location).attr('href',"<?=base_url()?>index.php/home");
                         }
                         else
                         {
-                            alert(":(")
+                             $("#wibuks_login").toggle("fast");
+                           
                         }
                     },
               
