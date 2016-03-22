@@ -9,7 +9,6 @@ class Login extends CI_Controller
 
     function index()
     {
-
         if(!isset($this->session->userdata["username"])){
             $this->load->library('facebook', array(
                 'appId' => '293965007434532',
