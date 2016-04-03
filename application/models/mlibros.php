@@ -32,13 +32,23 @@ class Mlibros extends CI_Model {
 						->get(self::TABLE)
 						->result();
 	}
-	
+
 	function total_posts_paginados($searchCollection, $maxRecords, $since) {
 		foreach ($searchCollection as $key => $value) {
 			$this->db->like($key, $value);
 		}
 
         return $this->db->get(self::TABLE, $maxRecords, $since)->result();
+	}
+	
+	function same_autor($articleId, $userId)
+	{
+		$NO_RECORDS_MATCHED = 0;
+
+		return $this->db->where(self::ID_KEY, $articleId)
+						->where(self::USER_ID_KEY, $userId)
+						->get(self::TABLE)
+						->num_rows() > $NO_RECORDS_MATCHED;
 	}
 
 	/**
@@ -61,16 +71,7 @@ class Mlibros extends CI_Model {
         return $query->num_rows();
 
 	}
-	function same_autor($article, $user)
-	{
-		$this->db->where("id_usuario",$user);
-		$this->db->where("id_libro",$article);
-		$query=$this->db->get("libros");
-		if($query)
-			return true;
-		else
-			return false;
-	}
+
 	function update_article($id_libro,$insert)
 	{
 		$this->db->where('id_libro', $id_libro);
