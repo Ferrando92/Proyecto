@@ -32,6 +32,14 @@ class Mlibros extends CI_Model {
 						->get(self::TABLE)
 						->result();
 	}
+	
+	function total_posts_paginados($searchCollection, $maxRecords, $since) {
+		foreach ($searchCollection as $key => $value) {
+			$this->db->like($key, $value);
+		}
+
+        return $this->db->get(self::TABLE, $maxRecords, $since)->result();
+	}
 
 	/**
 		NO TESTS NO REFACTORING
@@ -75,38 +83,5 @@ class Mlibros extends CI_Model {
 			return true;
 		else
 			return false;
-	}
-	function total_posts_paginados($buscador, $por_pagina, $segmento) {
-		
-		if(isset($buscador["titulo"]))
-		{
-		    $this->db->like('titulo', $buscador["titulo"]);
-		}
-
-    	if(isset($buscador["descripcion"]))
-    	{
-        	$this->db->like('descripcion', $buscador["descripcion"]);
-    	}
-    	if(isset($buscador["ISBN"]))
-    	{
-        	$this->db->where('ISBN', $buscador["ISBN"]);
-        }
-    	if(isset($buscador["localidad"]))
-    	{
-        	$this->db->where('localidad', $buscador["localidad"]); 
-    	}
-    	if(isset($buscador["id_asignatura"]))
-        $this->db->where('id_asignatura', $buscador['id_asignatura']); 
-
-    	if(isset($buscador["id_curso"]))
-        $this->db->where('id_curso', $buscador["id_curso"]); 
-
-        $consulta = $this->db->get('libros', $por_pagina, $segmento);
-        if ($consulta->num_rows() > 0) {
-            foreach ($consulta->result() as $fila) {
-            $data[] = $fila;
-        }
-            return $data;
-        }
 	}
 }
