@@ -1,59 +1,48 @@
 <?php
 class Mlibros extends CI_Model {
 
-	/*
-		var $title   = '';
-		var $content = '';
-		var $date	= '';
-	*/
+	const TABLE = "libros";
+	const ID_KEY = "id_libro";
+	const USER_ID_KEY = "id_usuario";
 
-	//
 	function __construct()
     {
-        // Call the Model constructor
         parent::__construct();
     }
-   
-	function Mlibros()
-	{
-		$this->table="libros";
-		$this->name_id="id_libro";
-		// Llamando al contructor del Modelo
-		parent::Model();
-	}
 
-	// Cuenta los usuarios que hay en la tabla
 	function count_libros()
 	{
-		$this->db->from('libros');
-		return $this->db->count_all_results();
+		return $this->db->from(self::TABLE)->count_all_results();
 	}
+
+	function get_article_by_id($id)
+	{
+		return $this->db->where(self::ID_KEY, $id)->get(self::TABLE)->result();
+	}
+
+	function get_article_by_user($userId)
+	{
+		return $this->db->where(self::USER_ID_KEY, $userId)->get(self::TABLE)->result();
+	}
+
+	function get_user_by_article($articleId)
+	{
+		return $this->db->select(self::USER_ID_KEY)
+						->where(self::ID_KEY, $articleId)
+						->get(self::TABLE)
+						->result();
+	}
+
+	/**
+		NO TESTS NO REFACTORING
+	**/
+
 	function insert_new_article($data)
 	{
 		$this->db->insert('libros',$data);
 		return mysql_insert_id();
 	}
-	function get_article_by_id($id)
-	{
-		//$this->db->select("*");
-		$this->db->where("id_libro",$id);
-		$query=$this->db->get("libros");
-		return $query->result();
-	}
-	function get_article_by_user($id)
-	{
-		//$this->db->select("*");
-		$this->db->where("id_usuario",$id);
-		$query=$this->db->get("libros");
-		return $query->result();
-	}
-	function get_user_by_article($id)
-	{
-		$this->db->select("id_usuario");
-		$this->db->where("id_libro",$id);
-		$query=$this->db->get("libros");
-		return $query->result();
-	}
+	
 	function count_search($search)
 	{
 		foreach ($search as $field => $value) {
