@@ -2,8 +2,18 @@
 
 class Testing extends CI_Controller
 {
+	const BOOK_TITLE_KEY = 'titulo';
+
 	const TEST_USER_ID = 12;
 	const INEXISTENT_USER_ID = 999;
+	const TEST_BOOK_ID = 999;
+	private static $ARTICLE_DATA_EXAMPLE = [
+		"id_libro" => 999,
+		"id_usuario" => 1,
+		"titulo" => "for testing", 
+		"descripcion" => "for testing", 
+		"localidad" => "Moncada"
+	];
 
 	public function __construct(){
 		parent::__construct();
@@ -19,6 +29,8 @@ class Testing extends CI_Controller
 	}
 
 	private function testBooksModel(){
+		$this->deleteArticle("for testing");
+		
 		$count_libros = $this->Mlibros->count_libros();
 		$get_article_by_id = $this->Mlibros->get_article_by_id(1)[0];
 		$get_article_by_user = $this->Mlibros->get_article_by_user(self::TEST_USER_ID);
@@ -30,6 +42,7 @@ class Testing extends CI_Controller
 		$zero_coincidences_search = $this->Mlibros->total_posts_paginados(["titulo" => "xxx"], 10, 0);
 		$same_autor_ok_case = $this->Mlibros->same_autor(1, self::TEST_USER_ID);
 		$same_autor_ko_case = $this->Mlibros->same_autor(1, self::INEXISTENT_USER_ID);
+		$insert_new_article = $this->Mlibros->insert_new_article(self::$ARTICLE_DATA_EXAMPLE);
 
 		$this->unit->run($count_libros, 2, "Mlibros::count_libros() should return the number of books in the DB");
 		$this->unit->run($get_article_by_id->id_libro, 1, "Mlibros::get_article_by_id() should return object with the given id");
@@ -44,6 +57,21 @@ class Testing extends CI_Controller
 		$this->unit->run(count($zero_coincidences_search), 0, "Mlibros::total_posts_paginados() should return an empty array if were no coincidences");
 		$this->unit->run($same_autor_ok_case, True, "Mlibros::same_autor() should return True if the given user owns the given article");
 		$this->unit->run($same_autor_ko_case, False, "Mlibros::same_autor() should return False if the given user DOESN'T own the given article");
+		$this->unit->run($this->readArticle(self::TEST_BOOK_ID)->titulo, self::$ARTICLE_DATA_EXAMPLE[self::BOOK_TITLE_KEY], "Mlibros::insert_new_article() must have inserted the given article in the DB");
+		$this->unit->run($insert_new_article, self::TEST_BOOK_ID, "Mlibros::insert_new_article() must have returned the id of the inserted article");
 
+		$this->deleteArticle("for testing");
+	}
+
+	private function createArticle($data){
+		$this->Mlibros->db->insert('libros', $data);
+	}
+
+	private function readArticle($id){
+		return $this->Mlibros->db->where('id_libro', $id)->get('libros')->result()[0];
+	}
+
+	private function deleteArticle($title){
+		$this->Mlibros->db->where('titulo', $title)->delete('libros');
 	}
 }

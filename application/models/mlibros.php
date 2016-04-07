@@ -51,15 +51,16 @@ class Mlibros extends CI_Model {
 						->num_rows() > $NO_RECORDS_MATCHED;
 	}
 
+	function insert_new_article($data)
+	{
+		$this->db->insert(self::TABLE, $data);
+		
+		return mysql_insert_id();
+	}
+
 	/**
 		NO TESTS NO REFACTORING
 	**/
-
-	function insert_new_article($data)
-	{
-		$this->db->insert('libros',$data);
-		return mysql_insert_id();
-	}
 	
 	function count_search($search)
 	{
@@ -77,6 +78,7 @@ class Mlibros extends CI_Model {
 		$this->db->where('id_libro', $id_libro);
 		$this->db->update('libros', $insert);
 	}
+	
 	function delete_article($libro)
 	{		
 		$this->db->where("id_libro",$libro);
