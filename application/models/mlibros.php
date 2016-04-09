@@ -57,21 +57,19 @@ class Mlibros extends CI_Model {
 		
 		return mysql_insert_id();
 	}
-
-	/**
-		NO TESTS NO REFACTORING
-	**/
 	
 	function count_search($search)
 	{
 		foreach ($search as $field => $value) {
-			$this->db->like($field,$value);
+			$this->db->like($field, $value);
 		}
 		
-		$query = $this->db->get('libros');
-        return $query->num_rows();
-
+		return $this->db->get(self::TABLE)->num_rows();
 	}
+
+	/**
+		NO TESTS NO REFACTORING
+	**/
 
 	function update_article($id_libro,$insert)
 	{
