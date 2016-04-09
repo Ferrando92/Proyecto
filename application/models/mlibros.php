@@ -67,15 +67,14 @@ class Mlibros extends CI_Model {
 		return $this->db->get(self::TABLE)->num_rows();
 	}
 
+	function update_article($id, $new_data)
+	{
+		$this->db->where(self::ID_KEY, $id)->update(self::TABLE, $new_data);
+	}
+
 	/**
 		NO TESTS NO REFACTORING
 	**/
-
-	function update_article($id_libro,$insert)
-	{
-		$this->db->where('id_libro', $id_libro);
-		$this->db->update('libros', $insert);
-	}
 	
 	function delete_article($libro)
 	{		
