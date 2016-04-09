@@ -7,6 +7,7 @@ class Testing extends CI_Controller
 	const TEST_USER_ID = 12;
 	const INEXISTENT_USER_ID = 999;
 	const TEST_BOOK_ID = 999;
+	const INEXISTENT_BOOK_ID = 13113;
 	private static $ARTICLE_DATA_EXAMPLE = [
 		"id_libro" => 999,
 		"id_usuario" => 1,
@@ -79,6 +80,11 @@ class Testing extends CI_Controller
 		$updated = $this->readArticle(self::TEST_BOOK_ID);
 		$this->unit->run($updated->localidad, "El Puig", "Mlibros::update_article() must update the article with the given id");
 
+		$deleted_article_response  = $this->Mlibros->delete_article(self::TEST_BOOK_ID);
+			$this->unit->run($deleted_article_response, True, "Mlibros::delete_article() should return True on success");
+			$deleted = $this->readArticle(self::TEST_BOOK_ID);
+			$this->unit->run($deleted, False, "Mlibros::delete_article() should have removed the record from the DB");
+
 		$this->deleteArticle("for testing");
 	}
 
@@ -87,7 +93,9 @@ class Testing extends CI_Controller
 	}
 
 	private function readArticle($id){
-		return $this->Mlibros->db->where('id_libro', $id)->get('libros')->result()[0];
+		$query = $this->Mlibros->db->where('id_libro', $id)->get('libros');
+		
+		return $query->num_rows > 0 ? $query->result()[0] : False;
 	}
 
 	private function deleteArticle($title){

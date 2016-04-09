@@ -71,17 +71,9 @@ class Mlibros extends CI_Model {
 	{
 		$this->db->where(self::ID_KEY, $id)->update(self::TABLE, $new_data);
 	}
-
-	/**
-		NO TESTS NO REFACTORING
-	**/
 	
-	function delete_article($libro)
+	function delete_article($id)
 	{		
-		$this->db->where("id_libro",$libro);
-		if($this->db->delete("libros"))
-			return true;
-		else
-			return false;
+		return $this->db->where(self::ID_KEY, $id)->delete(self::TABLE);
 	}
 }
